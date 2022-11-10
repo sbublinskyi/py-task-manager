@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Position(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
 
 

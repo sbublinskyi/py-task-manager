@@ -29,7 +29,10 @@ class FormsTests(TestCase):
         form_data = {
             "name": "New bug",
             "description": "some description of a bug",
-            "deadline": datetime(2022, 11, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Kiev')),
+            "deadline": datetime(
+                2022, 11, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(
+                    key='Europe/Kiev'
+                )),
             "is_completed": False,
             "priority": "high",
             "task_type": task_type,

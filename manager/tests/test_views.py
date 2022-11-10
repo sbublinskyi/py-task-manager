@@ -65,7 +65,9 @@ class PublicPagesTests(TestCase):
             password="user12345",
             position=Position.objects.create(name="QA")
         )
-        res = self.client.get(reverse("manager:worker-detail", args=[worker.id]))
+        res = self.client.get(
+            reverse("manager:worker-detail", args=[worker.id])
+        )
 
         self.assertEqual(res.status_code, 302)
 
@@ -77,7 +79,9 @@ class PublicPagesTests(TestCase):
             password="user12345",
             position=Position.objects.create(name="QA")
         )
-        res = self.client.get(reverse("manager:worker-delete", args=[worker.id]))
+        res = self.client.get(
+            reverse("manager:worker-delete", args=[worker.id])
+        )
 
         self.assertEqual(res.status_code, 302)
 
@@ -93,7 +97,9 @@ class PublicPagesTests(TestCase):
 
     def test_task_type_delete_login_required(self):
         task_type = TaskType.objects.create(name="bug")
-        res = self.client.get(reverse("manager:task-type-delete", args=[task_type.id]))
+        res = self.client.get(reverse(
+            "manager:task-type-delete", args=[task_type.id])
+        )
 
         self.assertEqual(res.status_code, 302)
 
@@ -109,6 +115,8 @@ class PublicPagesTests(TestCase):
 
     def test_position_delete_login_required(self):
         position = TaskType.objects.create(name="QA")
-        res = self.client.get(reverse("manager:position-delete", args=[position.id]))
+        res = self.client.get(reverse(
+            "manager:position-delete", args=[position.id])
+        )
 
         self.assertEqual(res.status_code, 302)
