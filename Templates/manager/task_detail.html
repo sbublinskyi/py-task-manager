@@ -48,30 +48,20 @@
   <div class="card border-0 shadow mb-4">
     <div class="card-body">
       <div class="alert alert-primary" role="alert">
-        Completed:
+        Completed: {{ task.is_completed }}
       </div>
       <div class="alert alert-light" role="alert">
-        {{ task.is_completed }}
+        Priority: {{ task.priority }}
       </div>
       <div class="alert alert-primary" role="alert">
-        Priority:
+        Deadline: {{ task.deadline }}
       </div>
       <div class="alert alert-light" role="alert">
-        {{ task.priority }}
-      </div>
-      <div class="alert alert-primary" role="alert">
-        Deadline:
-      </div>
-      <div class="alert alert-light" role="alert">
-        {{ task.deadline }}
-      </div>
-      <div class="alert alert-primary" role="alert">
         Description:
       </div>
       <div class="alert alert-light" role="alert">
         {{ task.description }}
       </div>
-
     </div>
   </div>
 
