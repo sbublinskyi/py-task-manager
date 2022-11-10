@@ -11,7 +11,7 @@ from manager.forms import (
     TaskForm,
     WorkerCreationForm,
     WorkerPositionUpdateForm,
-    WorkerSearchForm
+    WorkerSearchForm, TaskTypeSearchForm, PositionSearchForm
 )
 from manager.models import Task, TaskType, Worker, Position
 
@@ -81,6 +81,26 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     paginate_by = 5
     template_name = "manager/task_type_list.html"
+    queryset = Position.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskTypeListView, self).get_context_data(**kwargs)
+
+        context["search_form"] = TaskTypeSearchForm(
+            initial={"name": self.request.GET.get("name", "")}
+        )
+
+        return context
+
+    def get_queryset(self):
+        form = TaskTypeSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
@@ -152,6 +172,26 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     paginate_by = 5
+    queryset = Position.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionListView, self).get_context_data(**kwargs)
+
+        context["search_form"] = PositionSearchForm(
+            initial={"name": self.request.GET.get("name", "")}
+        )
+
+        return context
+
+    def get_queryset(self):
+        form = PositionSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
