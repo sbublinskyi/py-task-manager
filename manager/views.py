@@ -11,7 +11,10 @@ from manager.forms import (
     TaskForm,
     WorkerCreationForm,
     WorkerPositionUpdateForm,
-    WorkerSearchForm, TaskTypeSearchForm, PositionSearchForm, TaskTypeForm
+    WorkerSearchForm,
+    TaskTypeSearchForm,
+    PositionSearchForm,
+    TaskTypeForm, PositionForm
 )
 from manager.models import Task, TaskType, Worker, Position
 
@@ -81,7 +84,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     paginate_by = 5
     template_name = "manager/task_type_list.html"
-    queryset = Position.objects.all()
+    queryset = TaskType.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
@@ -196,7 +199,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    form_class = TaskTypeForm
+    form_class = PositionForm
     success_url = reverse_lazy("manager:position-list")
 
 
