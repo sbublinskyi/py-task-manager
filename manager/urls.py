@@ -7,6 +7,10 @@ from manager.views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
+    TaskTypeListView,
+    TaskTypeCreateView,
+    TaskTypeUpdateView,
+    TaskTypeDeleteView,
 )
 
 urlpatterns = [
@@ -23,6 +27,22 @@ urlpatterns = [
         "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete"
+    ),
+    path("task_types/", TaskTypeListView.as_view(), name="task-type-list"),
+    path(
+        "task_types/create/",
+        TaskTypeCreateView.as_view(),
+        name="task-type-create"
+    ),
+    path(
+        "task_types/<int:pk>/update/",
+        TaskTypeUpdateView.as_view(),
+        name="task-type-update"
+    ),
+    path(
+        "task_types/<int:pk>/delete/",
+        TaskTypeDeleteView.as_view(),
+        name="task-type-delete"
     ),
 
 ]
