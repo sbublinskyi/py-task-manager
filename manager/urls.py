@@ -16,6 +16,10 @@ from manager.views import (
     WorkerCreateView,
     WorkerPositionUpdateView,
     WorkerDeleteView,
+    PositionListView,
+    PositionCreateView,
+    PositionUpdateView,
+    PositionDeleteView,
 )
 
 urlpatterns = [
@@ -66,7 +70,22 @@ urlpatterns = [
         WorkerDeleteView.as_view(),
         name="worker-delete"
     ),
-
+    path("positions/", PositionListView.as_view(), name="position-list"),
+    path(
+        "positions/create/",
+        PositionCreateView.as_view(),
+        name="position-create"
+    ),
+    path(
+        "positions/<int:pk>/update/",
+        PositionUpdateView.as_view(),
+        name="position-update"
+    ),
+    path(
+        "positions/<int:pk>/delete/",
+        PositionDeleteView.as_view(),
+        name="position-delete"
+    )
 ]
 
 app_name = "manager"

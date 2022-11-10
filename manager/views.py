@@ -12,7 +12,7 @@ from manager.forms import (
     WorkerPositionUpdateForm,
     WorkerSearchForm
 )
-from manager.models import Task, TaskType, Worker
+from manager.models import Task, TaskType, Worker, Position
 
 
 @login_required
@@ -146,3 +146,25 @@ class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     form_class = WorkerPositionUpdateForm
     success_url = reverse_lazy("manager:worker-list")
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    paginate_by = 5
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:position-list")
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("manager:position-list")
