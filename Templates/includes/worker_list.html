@@ -17,7 +17,9 @@
             <tr>
               <td>{{ worker.id }}</td>
               <td>
-                <a href="{% url 'manager:worker-detail' pk=worker.pk %}">{{ worker.username }}</a>
+                <a href="{% url 'manager:worker-detail' pk=worker.pk %}">
+                  {{ worker.username }}{% if user == worker %} <strong>(Me)</strong>{% endif %}
+                </a>
               </td>
               <td>
                 {{ worker.first_name }} {{ worker.last_name }}

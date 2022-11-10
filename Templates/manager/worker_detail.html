@@ -8,7 +8,7 @@
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div class="d-block mb-4 mb-md-0">
-      <h2 class="h4">User: {{ worker.username }}</h2>
+      <h2 class="h4">User: {{ worker.username }} {% if user == worker %} <strong>(Me)</strong>{% endif %}</h2>
       <p class="mb-0">Worker Position: {{ worker.position }}</p>
     </div>
 
