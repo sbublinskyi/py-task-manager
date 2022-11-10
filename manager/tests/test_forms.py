@@ -1,11 +1,10 @@
 import zoneinfo
 from datetime import datetime
 
-from django.db.models import QuerySet
 from django.test import TestCase
 
-from manager.forms import WorkerCreationForm, TaskForm, TaskSearchForm
-from manager.models import Position, TaskType, Task
+from manager.forms import WorkerCreationForm, TaskForm
+from manager.models import Position, TaskType
 
 
 class FormsTests(TestCase):
