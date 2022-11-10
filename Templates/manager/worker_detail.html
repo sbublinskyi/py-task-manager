@@ -9,7 +9,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div class="d-block mb-4 mb-md-0">
       <h2 class="h4">User: {{ worker.username }} {% if user == worker %} <strong>(Me)</strong>{% endif %}</h2>
-      <p class="mb-0">Worker Position: {{ worker.position }}</p>
+      <p>Detail page</p>
     </div>
 
     <div class="btn-toolbar mb-2 mb-md-0">
@@ -38,23 +38,21 @@
   <div class="card border-0 shadow mb-4">
     <div class="card-body">
       <div class="alert alert-primary" role="alert">
-        Full name:
+        Full name: {{ worker.first_name }} {{ worker.last_name }}
       </div>
       <div class="alert alert-light" role="alert">
-        {{ worker.first_name }} {{ worker.last_name }}
+        Staff: {{ worker.is_staff }}
       </div>
       <div class="alert alert-primary" role="alert">
-        Staff:
+        Position: {{ worker.position }}
       </div>
       <div class="alert alert-light" role="alert">
-        {{ worker.is_staff }}
+        Last login: {{ worker.last_login }}
       </div>
       <div class="alert alert-primary" role="alert">
-        Last login:
+        Assigned tasks: {{ worker.tasks.count }}
       </div>
-      <div class="alert alert-light" role="alert">
-        {{ worker.last_login }}
-      </div>
+
 
     </div>
   </div>
