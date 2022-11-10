@@ -5,8 +5,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from manager.forms import TaskSearchForm, TaskForm
-from manager.models import Task, TaskType
+from manager.forms import (
+    TaskSearchForm,
+    TaskForm,
+    WorkerCreationForm,
+    WorkerPositionUpdateForm,
+    WorkerSearchForm
+)
+from manager.models import Task, TaskType, Worker
 
 
 @login_required
@@ -94,3 +100,49 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     template_name = "manager/task_type_confirm_delete.html"
     success_url = reverse_lazy("manager:task-type-list")
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    paginate_by = 5
+    queryset = get_user_model().objects.all().select_related("position")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+
+        context["search_form"] = WorkerSearchForm(
+            initial={"username": self.request.GET.get("username", "")}
+        )
+
+        return context
+
+    def get_queryset(self):
+        form = WorkerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+
+        return self.queryset
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("manager:worker-list")
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("manager:worker-list")
+
+
+class WorkerPositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerPositionUpdateForm
+    success_url = reverse_lazy("manager:worker-list")
