@@ -28,6 +28,7 @@ def index(request):
         "task_count": Task.objects.count(),
         "task_type_count": TaskType.objects.count(),
         "worker_count": get_user_model().objects.count(),
+        "position_count": Position.objects.count(),
         "num_visits": num_visits
     }
 
