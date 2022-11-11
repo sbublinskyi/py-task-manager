@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from manager.models import Task, Worker, TaskType, Position
+from manager.models import Task, Worker
 
 
 class TaskForm(forms.ModelForm):
@@ -71,18 +71,6 @@ class PositionSearchForm(forms.Form):
             "class": "form-control"
         })
     )
-
-
-class PositionForm(forms.ModelForm):
-    class Meta:
-        model = Position
-        fields = "__all__"
-
-
-class TaskTypeForm(forms.ModelForm):
-    class Meta:
-        model = TaskType
-        fields = "__all__"
 
 
 class TaskTypeSearchForm(forms.Form):

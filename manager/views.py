@@ -14,7 +14,7 @@ from manager.forms import (
     WorkerSearchForm,
     TaskTypeSearchForm,
     PositionSearchForm,
-    TaskTypeForm, PositionForm
+    # TaskTypeForm, PositionForm
 )
 from manager.models import Task, TaskType, Worker, Position
 
@@ -72,7 +72,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("manager:task-list")
 
 
@@ -109,7 +109,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
-    form_class = TaskTypeForm
+    fields = "__all__"
     template_name = "manager/task_type_form.html"
     success_url = reverse_lazy("manager:task-type-list")
 
@@ -200,7 +200,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    form_class = PositionForm
+    fields = "__all__"
     success_url = reverse_lazy("manager:position-list")
 
 
