@@ -12,6 +12,11 @@ class TaskForm(forms.ModelForm):
         required=False
     )
 
+    deadline = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+
     class Meta:
         model = Task
         fields = "__all__"
@@ -73,23 +78,11 @@ class PositionForm(forms.ModelForm):
         model = Position
         fields = "__all__"
 
-        widgets = {
-            "name": forms.TextInput(
-                attrs={"class": "form-control"}
-            )
-        }
-
 
 class TaskTypeForm(forms.ModelForm):
     class Meta:
         model = TaskType
         fields = "__all__"
-
-        widgets = {
-            "name": forms.TextInput(
-                attrs={"class": "form-control"}
-            )
-        }
 
 
 class TaskTypeSearchForm(forms.Form):
