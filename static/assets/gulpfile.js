@@ -30,7 +30,7 @@ const paths = {
 
 // Compile SCSS
 gulp.task('scss', function() {
-    return gulp.src([paths.src.scss + '/custom/**/*.scss', paths.src.scss + '/volt/**/*.scss', paths.src.scss + '/volt.scss'])
+    return gulp.src([paths.src.scss + '/custom/**/*.scss', paths.src.scss + '/pixel/**/*.scss', paths.src.scss + '/pixel.scss'])
         .pipe(wait(500))
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -45,7 +45,7 @@ gulp.task('scss', function() {
 // Minify CSS
 gulp.task('minify:css', function() {
     return gulp.src([
-            paths.src.css + '/volt.css'
+            paths.src.css + '/pixel.css'
         ])
         .pipe(cleanCss())
         .pipe(rename(function(path) {
