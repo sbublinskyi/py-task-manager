@@ -14,7 +14,6 @@ from manager.forms import (
     WorkerSearchForm,
     TaskTypeSearchForm,
     PositionSearchForm,
-    # TaskTypeForm, PositionForm
 )
 from manager.models import Task, TaskType, Worker, Position
 
