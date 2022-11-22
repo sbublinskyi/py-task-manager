@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %} Tables {% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    <div class="d-block mb-4 mb-md-0">
+      <h2 class="h4">{{ object|yesno:"Update,Create a" }} user</h2>
+      <p class="mb-0">User form</p>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+    </div>
+  </div>
+
+  <div class="card border-0 shadow mb-4">
+    <div class="card-body">
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
